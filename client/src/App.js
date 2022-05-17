@@ -12,6 +12,8 @@ import { setUser } from "./redux/features/authSlice";
 import AddEditFood from "./pages/AddEditFood";
 import SingleFood from "./pages/SingleFood";
 import Dashboard from "./pages/Dashboard";
+import PrivateRoute from "./components/PrivateRoute";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,10 +30,32 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/addFood" element={<AddEditFood />} />
-          <Route path="/editFood/:id" element={<AddEditFood />} />
+          <Route
+            path="/addFood"
+            element={
+              <PrivateRoute>
+                <AddEditFood />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/editFood/:id"
+            element={
+              <PrivateRoute>
+                <AddEditFood />
+              </PrivateRoute>
+            }
+          />
           <Route path="/food/:id" element={<SingleFood />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </BrowserRouter>

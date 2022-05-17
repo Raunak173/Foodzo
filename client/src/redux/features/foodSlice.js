@@ -185,7 +185,7 @@ const foodSlice = createSlice({
     },
     [getFoodsByUser.fulfilled]: (state, action) => {
       state.loading = false;
-      state.userTours = action.payload;
+      state.userFoods = action.payload;
     },
     [getFoodsByUser.rejected]: (state, action) => {
       state.loading = false;
