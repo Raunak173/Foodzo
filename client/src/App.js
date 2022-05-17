@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import { useDispatch } from "react-redux";
 import { setUser } from "./redux/features/authSlice";
 import AddEditFood from "./pages/AddEditFood";
+import SingleFood from "./pages/SingleFood";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/addFood" element={<AddEditFood />} />
           <Route path="/editFood/:id" element={<AddEditFood />} />
+          <Route path="/food/:id" element={<SingleFood />} />
         </Routes>
       </div>
     </BrowserRouter>
