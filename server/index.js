@@ -15,7 +15,7 @@ app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use("/users", userRouter);
-app.use("/foods", foodRouter);
+app.use("/food", foodRouter);
 
 const MONGODB_URI =
   "mongodb+srv://raunak173:raunak173@cluster0.achg4.mongodb.net/?retryWrites=true&w=majority";

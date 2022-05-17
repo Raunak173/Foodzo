@@ -15,6 +15,67 @@ export const createFood = createAsyncThunk(
   }
 );
 
+export const getFoods = createAsyncThunk(
+  "food/getFoods",
+  async (page, { rejectWithValue }) => {
+    try {
+      const response = await api.getFoods(page);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const getFood = createAsyncThunk(
+  "food/getFood",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await api.getFood(id);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const likeFood = createAsyncThunk(
+  "food/likeFood",
+  async ({ _id }, { rejectWithValue }) => {
+    try {
+      const response = await api.likeFood(_id);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const getFoodsByUser = createAsyncThunk(
+  "food/getFoodsByUser",
+  async (userId, { rejectWithValue }) => {
+    try {
+      const response = await api.getFoodsByUser(userId);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const deleteFood = createAsyncThunk(
+  "food/deleteFood",
+  async ({ id, toast }, { rejectWithValue }) => {
+    try {
+      const response = await api.deleteFood(id);
+      toast.success("Tour Deleted Successfully");
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export const updateFood = createAsyncThunk(
   "tour/updateFood",
   async ({ id, updatedFoodData, toast, navigate }, { rejectWithValue }) => {
@@ -22,6 +83,42 @@ export const updateFood = createAsyncThunk(
       const response = await api.updateFood(updatedFoodData, id);
       toast.success("Food Updated Successfully");
       navigate("/");
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const searchFoods = createAsyncThunk(
+  "food/searchFoods",
+  async (searchQuery, { rejectWithValue }) => {
+    try {
+      const response = await api.getFoodsBySearch(searchQuery);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const getFoodsByTag = createAsyncThunk(
+  "food/getFoodsByTag",
+  async (tag, { rejectWithValue }) => {
+    try {
+      const response = await api.getTagFoods(tag);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const getRelatedFoods = createAsyncThunk(
+  "food/getRelatedFoods",
+  async (tags, { rejectWithValue }) => {
+    try {
+      const response = await api.getRelatedFoods(tags);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -42,6 +139,11 @@ const foodSlice = createSlice({
     error: "",
     loading: false,
   },
+  reducers: {
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
+  },
   extraReducers: {
     [createFood.pending]: (state, action) => {
       state.loading = true;
@@ -54,58 +156,58 @@ const foodSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
-    // [getTours.pending]: (state, action) => {
-    //   state.loading = true;
-    // },
-    // [getTours.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   state.tours = action.payload.data;
-    //   state.numberOfPages = action.payload.numberOfPages;
-    //   state.currentPage = action.payload.currentPage;
-    // },
-    // [getTours.rejected]: (state, action) => {
-    //   state.loading = false;
-    //   state.error = action.payload.message;
-    // },
-    // [getTour.pending]: (state, action) => {
-    //   state.loading = true;
-    // },
-    // [getTour.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   state.tour = action.payload;
-    // },
-    // [getTour.rejected]: (state, action) => {
-    //   state.loading = false;
-    //   state.error = action.payload.message;
-    // },
-    // [getToursByUser.pending]: (state, action) => {
-    //   state.loading = true;
-    // },
-    // [getToursByUser.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   state.userTours = action.payload;
-    // },
-    // [getToursByUser.rejected]: (state, action) => {
-    //   state.loading = false;
-    //   state.error = action.payload.message;
-    // },
-    // [deleteTour.pending]: (state, action) => {
-    //   state.loading = true;
-    // },
-    // [deleteTour.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   const {
-    //     arg: { id },
-    //   } = action.meta;
-    //   if (id) {
-    //     state.userTours = state.userTours.filter((item) => item._id !== id);
-    //     state.tours = state.tours.filter((item) => item._id !== id);
-    //   }
-    // },
-    // [deleteTour.rejected]: (state, action) => {
-    //   state.loading = false;
-    //   state.error = action.payload.message;
-    // },
+    [getFoods.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getFoods.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.foods = action.payload.data;
+      state.numberOfPages = action.payload.numberOfPages;
+      state.currentPage = action.payload.currentPage;
+    },
+    [getFoods.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+    },
+    [getFood.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getFood.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.food = action.payload;
+    },
+    [getFood.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+    },
+    [getFoodsByUser.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getFoodsByUser.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.userTours = action.payload;
+    },
+    [getFoodsByUser.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+    },
+    [deleteFood.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [deleteFood.fulfilled]: (state, action) => {
+      state.loading = false;
+      const {
+        arg: { id },
+      } = action.meta;
+      if (id) {
+        state.userFoods = state.userFoods.filter((item) => item._id !== id);
+        state.foods = state.foods.filter((item) => item._id !== id);
+      }
+    },
+    [deleteFood.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+    },
     [updateFood.pending]: (state, action) => {
       state.loading = true;
     },
@@ -127,56 +229,57 @@ const foodSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
-    // [likeTour.pending]: (state, action) => {},
-    // [likeTour.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   const {
-    //     arg: { _id },
-    //   } = action.meta;
-    //   if (_id) {
-    //     state.tours = state.tours.map((item) =>
-    //       item._id === _id ? action.payload : item
-    //     );
-    //   }
-    // },
-    // [likeTour.rejected]: (state, action) => {
-    //   state.error = action.payload.message;
-    // },
+    [likeFood.pending]: (state, action) => {},
+    [likeFood.fulfilled]: (state, action) => {
+      state.loading = false;
+      const {
+        arg: { _id },
+      } = action.meta;
+      if (_id) {
+        state.tours = state.tours.map((item) =>
+          item._id === _id ? action.payload : item
+        );
+      }
+    },
+    [likeFood.rejected]: (state, action) => {
+      state.error = action.payload.message;
+    },
 
-    // [searchTours.pending]: (state, action) => {
-    //   state.loading = true;
-    // },
-    // [searchTours.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   state.tours = action.payload;
-    // },
-    // [searchTours.rejected]: (state, action) => {
-    //   state.loading = false;
-    //   state.error = action.payload.message;
-    // },
-    // [getToursByTag.pending]: (state, action) => {
-    //   state.loading = true;
-    // },
-    // [getToursByTag.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   state.tagTours = action.payload;
-    // },
-    // [getToursByTag.rejected]: (state, action) => {
-    //   state.loading = false;
-    //   state.error = action.payload.message;
-    // },
-    // [getRelatedTours.pending]: (state, action) => {
-    //   state.loading = true;
-    // },
-    // [getRelatedTours.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   state.relatedTours = action.payload;
-    // },
-    // [getRelatedTours.rejected]: (state, action) => {
-    //   state.loading = false;
-    //   state.error = action.payload.message;
-    // },
+    [searchFoods.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [searchFoods.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.foods = action.payload;
+    },
+    [searchFoods.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+    },
+    [getFoodsByTag.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getFoodsByTag.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.tagFoods = action.payload;
+    },
+    [getFoodsByTag.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+    },
+    [getRelatedFoods.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getRelatedFoods.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.RelatedFoods = action.payload;
+    },
+    [getRelatedFoods.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+    },
   },
 });
 
+export const { setCurrentPage } = foodSlice.actions;
 export default foodSlice.reducer;
