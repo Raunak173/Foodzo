@@ -43,7 +43,6 @@ const Login = () => {
   };
 
   const googleSuccess = (resp) => {
-    console.log(resp);
     const email = resp?.profileObj?.email;
     const name = resp?.profileObj?.name;
     const token = resp?.tokenId;
@@ -108,7 +107,7 @@ const Login = () => {
               </MDBBtn>
             </div>
           </MDBValidation>
-          <br />
+          {/* <br />
           <GoogleLogin
             clientId="179993829349-l5i1t9lrudsh8ka0d33j2ms75m5m8h40.apps.googleusercontent.com"
             render={(renderProps) => (
@@ -124,7 +123,7 @@ const Login = () => {
             onSuccess={googleSuccess}
             onFailure={googleFailure}
             cookiePolicy="single_host_origin"
-          />
+          /> */}
         </MDBCardBody>
         <MDBCardFooter>
           <Link to="/register">
