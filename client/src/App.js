@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "./redux/features/authSlice";
 import AddEditFood from "./pages/AddEditFood";
 import SingleFood from "./pages/SingleFood";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function App() {
           <Route path="/addFood" element={<AddEditFood />} />
           <Route path="/editFood/:id" element={<AddEditFood />} />
           <Route path="/food/:id" element={<SingleFood />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </BrowserRouter>
