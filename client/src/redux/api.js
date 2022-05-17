@@ -4,3 +4,4 @@ const API = axios.create({ baseURL: "http://localhost:5000" }); //creates a api 
 
 export const signIn = (formData) => API.post("/users/signin", formData);
 export const signUp = (formData) => API.post("/users/signup", formData);
+export const googleSignIn = (result) => API.post("/users/googleSignIn", result);
