@@ -38,7 +38,7 @@ const Home = () => {
         alignContent: "center",
       }}
     >
-      <MDBRow className="mt-5">
+      <MDBRow style={{ marginTop: 80 }}>
         {foods.length === 0 && location.pathname === "/" && (
           <MDBTypography className="text-center mb-0" tag="h2">
             No Foods Found :/
