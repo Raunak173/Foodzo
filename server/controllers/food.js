@@ -20,9 +20,6 @@ export const createFood = async (req, res) => {
 export const getFoods = async (req, res) => {
   const { page } = req.query;
   try {
-    // const Foods = await FoodModal.find();
-    // res.status(200).json(Foods);
-
     const limit = 6;
     const startIndex = (Number(page) - 1) * limit;
     const total = await FoodModal.countDocuments({});
