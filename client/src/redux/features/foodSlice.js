@@ -236,7 +236,7 @@ const foodSlice = createSlice({
         arg: { _id },
       } = action.meta;
       if (_id) {
-        state.tours = state.tours.map((item) =>
+        state.foods = state.foods.map((item) =>
           item._id === _id ? action.payload : item
         );
       }
