@@ -13,7 +13,7 @@ import {
   getFoodsByUser,
   likeFood,
   updateFood,
-} from "../controllers/Food.js";
+} from "../controllers/food.js";
 
 router.get("/search", getFoodsBySearch);
 router.get("/tag/:tag", getFoodsByTag);

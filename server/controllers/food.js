@@ -1,4 +1,4 @@
-import FoodModal from "../models/Food.js";
+import FoodModal from "../models/food.js";
 import mongoose from "mongoose";
 
 export const createFood = async (req, res) => {
