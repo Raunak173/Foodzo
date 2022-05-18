@@ -82,7 +82,7 @@ const SingleFood = () => {
           </MDBCardBody>
           <RelatedFoods relatedFoods={relatedFoods} foodId={id} />
         </MDBCard>
-        <DisqusThread id={id} title={food.title} path={`/food/${id}`} />
+        {/* <DisqusThread id={id} title={food.title} path={`/food/${id}`} /> */}
       </MDBContainer>
     </>
   );
