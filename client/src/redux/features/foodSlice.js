@@ -77,7 +77,7 @@ export const deleteFood = createAsyncThunk(
 );
 
 export const updateFood = createAsyncThunk(
-  "tour/updateFood",
+  "food/updateFood",
   async ({ id, updatedFoodData, toast, navigate }, { rejectWithValue }) => {
     try {
       const response = await api.updateFood(updatedFoodData, id);

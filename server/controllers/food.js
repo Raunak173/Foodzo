@@ -39,7 +39,7 @@ export const getFood = async (req, res) => {
   const { id } = req.params;
   try {
     const food = await FoodModal.findById(id);
-    res.status(200).json(Food);
+    res.status(200).json(food);
   } catch (error) {
     res.status(404).json({ message: "Something went wrong" });
   }
@@ -134,7 +134,7 @@ export const likeFood = async (req, res) => {
 
     const food = await FoodModal.findById(id);
 
-    const index = Food.likes.findIndex((id) => id === String(req.userId));
+    const index = food.likes.findIndex((id) => id === String(req.userId));
 
     if (index === -1) {
       food.likes.push(req.userId);
