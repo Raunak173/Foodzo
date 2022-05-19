@@ -1,7 +1,7 @@
 # Foodzo
 Site deployed on **netlify** : https://fooodzo.netlify.app/
 
-This website is basically a social media for foods. User can register themselves on the app and then login to view and add their food pics. They can like each other's pics and comment on each other's post. Thanks too **diqus** comment section library. Users also have the liberty to view their dashboard. Dashboard enables them to edit or delete their pics. It is a full too fun social media app for all the foodies there. So what are you waiting for, register on the app now!!
+This website is basically a social media for foods. User can register themselves on the app and then login to view and add their food pics. They can like each other's pics and comment on each other's post. Thanks too **diqus** comment section library. Users also have the liberty to view their dashboard. Dashboard enables them to edit or delete their pics. The app also consists of pagination too. It is a full too fun social media app for all the foodies there. So what are you waiting for, register on the app now!!
 Also don't worry for security, it is based on bcrypt which enables password hashing so it is pretty safe here.
 
 **Tech Stacks Used :**
