@@ -35,7 +35,7 @@ const Header = () => {
     e.preventDefault();
     if (search) {
       dispatch(searchFoods(search));
-      navigate(`/foods/search?searchQuery=${search}`);
+      navigate(`/food/search?searchQuery=${search}`);
       setSearch("");
     } else {
       navigate("/");
