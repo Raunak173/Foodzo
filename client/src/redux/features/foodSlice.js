@@ -68,7 +68,7 @@ export const deleteFood = createAsyncThunk(
   async ({ id, toast }, { rejectWithValue }) => {
     try {
       const response = await api.deleteFood(id);
-      toast.success("Tour Deleted Successfully");
+      toast.success("Food Deleted Successfully");
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);

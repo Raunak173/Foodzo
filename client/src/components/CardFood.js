@@ -77,7 +77,7 @@ const CardFood = ({
           src={imageFile}
           alt={title}
           position="top"
-          style={{ maxWidth: "100%", height: "180px" }}
+          style={{ maxWidth: "100%", height: "300px" }}
         />
         <div className="top-left">{name}</div>
         <span className="text-start tag-card">
@@ -91,7 +91,7 @@ const CardFood = ({
             onClick={!user?.result ? null : handleLike}
           >
             {!user?.result ? (
-              <MDBTooltip title="Please login to like tour" tag="a">
+              <MDBTooltip title="Please login to like the pic" tag="a">
                 <Likes />
               </MDBTooltip>
             ) : (
