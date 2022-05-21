@@ -14,4 +14,4 @@ bcrypt, morgan, axios, cors, mdb design (Material design bootstrap), disqus, mon
 
 **Development Environment:**
 
-VS Code, PostMan, git CLI, heroku CLI
+VS Code, PostMan, git CLI, heroku CLI and Netlify CLI.
