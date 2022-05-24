@@ -37,7 +37,12 @@ const SingleFood = () => {
         <MDBCard className="mb-3 mt-2">
           <MDBCardImage
             position="top"
-            style={{ width: "60%", maxHeight: "900px", margin: "auto" }}
+            style={{
+              width: "60%",
+              maxHeight: "900px",
+              margin: "auto",
+              objectFit: "cover",
+            }}
             src={food.imageFile}
             alt={food.title}
           />
